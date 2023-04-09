@@ -1,5 +1,5 @@
 import { ColorModeContext, useMode } from "./theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import TopBar from "./scenes/global/TopBar";
 import Sidebar from "./scenes/global/Sidebar";
@@ -15,9 +15,22 @@ import Pie from "./scenes/pie";
 import Line from "./scenes/line";
 import Geography from "./scenes/geography";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { useEffect, useState } from "react";
 
 function App() {
   const [theme, colorMode] = useMode();
+
+  const [collapsed, setCollapsed] = useState(
+    window.matchMedia("(min-width: 900px)").matches
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia("(min-width: 900px)")
+      .addEventListener("change", (e) => setCollapsed(e.matches));
+  }, []);
+
+  const sidebarWidth = 250;
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -25,8 +38,27 @@ function App() {
         <CssBaseline />
         <div className="app">
           <ProSidebarProvider>
-            <Sidebar />
-            <main className="content">
+            <Box
+              position="fixed"
+              width={sidebarWidth}
+              height="100vh"
+              sx={{
+                transition: "width .3s ease",
+                "& .ps-menu-button:hover": {
+                  background: "transparent !important",
+                },
+              }}
+            >
+              <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+            </Box>
+            <Box
+              width={collapsed ? `calc(100% - ${sidebarWidth}px)` : "100%"}
+              ml={collapsed ? `${sidebarWidth}px` : "80px"}
+              sx={{
+                transition: "width .3s ease, margin-left .3s ease",
+                overflowX: "hidden",
+              }}
+            >
               <TopBar />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
@@ -41,7 +73,7 @@ function App() {
                 <Route path="/line" element={<Line />} />
                 <Route path="/geography" element={<Geography />} />
               </Routes>
-            </main>
+            </Box>
           </ProSidebarProvider>
         </div>
       </ThemeProvider>

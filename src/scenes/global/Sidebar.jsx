@@ -3,7 +3,6 @@ import {
   Menu,
   MenuItem,
   Sidebar as SideBar,
-  useProSidebar,
 } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -38,11 +37,10 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ collapsed, setCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [selected, setSelected] = useState("Dashboard");
-  const { collapsed, collapseSidebar } = useProSidebar();
 
   const menuItemData = [
     {
@@ -103,89 +101,79 @@ const Sidebar = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        "& .ps-menu-button:hover": {
-          background: "transparent !important",
-        },
-      }}
+    <SideBar
+      style={{ height: "100vh", borderRightWidth: 0 }}
+      defaultCollapsed={!collapsed}
+      backgroundColor={colors.primary[400]}
     >
-      <SideBar
-        style={{ height: "100vh", borderRightWidth: 0 }}
-        defaultCollapsed={collapsed}
-        backgroundColor={colors.primary[400]}
-      >
-        <Menu>
-          <MenuItem
-            icon={
-              collapsed ? (
-                <IconButton onClick={() => collapseSidebar()}>
-                  <MenuOutlinedIcon />
-                </IconButton>
-              ) : undefined
-            }
-            style={{
-              margin: "10px 0 0px 0",
-              color: colors.grey[100],
-              cursor: "auto",
-            }}
-          >
-            {!collapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  ADMIN
-                </Typography>
-                <IconButton onClick={() => collapseSidebar()}>
-                  <MenuOutlinedIcon />
-                </IconButton>
-              </Box>
-            )}
-          </MenuItem>
-          {!collapsed && (
-            <>
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <img
-                  alt="profile-user"
-                  width="80px"
-                  height="80px"
-                  src={`../../assets/user.png`}
-                  style={{ borderRadius: "50%" }}
-                />
-              </Box>
-              <Box textAlign="center" my="8px">
-                <Typography
-                  variant="h3"
-                  color={colors.grey[100]}
-                  fontWeight="bold"
-                >
-                  Ed Roh
-                </Typography>
-                <Typography variant="h6" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
-                </Typography>
-              </Box>
-            </>
+      <Menu>
+        <MenuItem
+          icon={
+            !collapsed ? (
+              <IconButton onClick={() => setCollapsed(true)}>
+                <MenuOutlinedIcon />
+              </IconButton>
+            ) : undefined
+          }
+          style={{
+            margin: "10px 0 0 0",
+            color: colors.grey[100],
+            cursor: "auto",
+          }}
+        >
+          {collapsed && (
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="h3" color={colors.grey[100]}>
+                ADMIN
+              </Typography>
+              <IconButton onClick={() => setCollapsed(false)}>
+                <MenuOutlinedIcon />
+              </IconButton>
+            </Box>
           )}
-          {/* MENU ITEMS */}
-          {menuItemData.map((item) => (
-            <Item
-              key={item.to}
-              title={item.title}
-              to={item.to}
-              icon={item.icon}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          ))}
-          {/* <Box>
-          </Box> */}
-        </Menu>
-      </SideBar>
-    </Box>
+        </MenuItem>
+        {collapsed && (
+          <>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <img
+                alt="profile-user"
+                width="80px"
+                height="80px"
+                src={`../../assets/user.png`}
+                style={{ borderRadius: "50%" }}
+              />
+            </Box>
+            <Box textAlign="center" my="8px">
+              <Typography
+                variant="h3"
+                color={colors.grey[100]}
+                fontWeight="bold"
+              >
+                Ed Roh
+              </Typography>
+              <Typography variant="h6" color={colors.greenAccent[500]}>
+                VP Fancy Admin
+              </Typography>
+            </Box>
+          </>
+        )}
+        {/* MENU ITEMS */}
+        {menuItemData.map((item) => (
+          <Item
+            key={item.to}
+            title={item.title}
+            to={item.to}
+            icon={item.icon}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        ))}
+      </Menu>
+    </SideBar>
   );
 };
 
