@@ -1,4 +1,4 @@
-import { ColorModeContext, useMode } from "./theme";
+import { ColorModeContext, tokens, useMode } from "./theme";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import TopBar from "./scenes/global/TopBar";
@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [theme, colorMode] = useMode();
+  const colors = tokens(theme.palette.mode);
 
   const [collapsed, setCollapsed] = useState(
     window.matchMedia("(min-width: 900px)").matches
@@ -46,6 +47,9 @@ function App() {
                 transition: "width .3s ease",
                 "& .ps-menu-button:hover": {
                   background: "transparent !important",
+                },
+                "& .ps-menu-button.ps-active": {
+                  background: `${colors.primary[700]} !important`,
                 },
               }}
             >

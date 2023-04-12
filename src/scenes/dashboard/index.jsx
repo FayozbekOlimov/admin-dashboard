@@ -96,11 +96,20 @@ const Dashboard = () => {
         {statBoxData.map((stat) => (
           <Box
             key={stat.id}
+            sx={{
+              [theme.breakpoints.down("lg")]: {
+                gridColumn: "span 6",
+              },
+              [theme.breakpoints.down("sm")]: {
+                gridColumn: "span 12",
+              },
+            }}
             gridColumn="span 3"
             backgroundColor={colors.primary[400]}
             display="flex"
             alignItems="center"
             justifyContent="center"
+            borderRadius="8px"
           >
             <StatBox
               title={stat.title}
@@ -114,8 +123,14 @@ const Dashboard = () => {
 
         <Box
           gridColumn="span 8"
+          sx={{
+            [theme.breakpoints.down("lg")]: {
+              gridColumn: "span 12",
+            },
+          }}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          borderRadius="8px"
         >
           <Box
             p="16px 20px 0"
@@ -156,9 +171,15 @@ const Dashboard = () => {
 
         <Box
           gridColumn="span 4"
+          sx={{
+            [theme.breakpoints.down("lg")]: {
+              gridColumn: "span 12",
+            },
+          }}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
+          borderRadius="8px"
         >
           <Box
             display="flex"
@@ -205,9 +226,18 @@ const Dashboard = () => {
 
         <Box
           gridColumn="span 4"
+          sx={{
+            [theme.breakpoints.down("lg")]: {
+              gridColumn: "span 6",
+            },
+            [theme.breakpoints.down("md")]: {
+              gridColumn: "span 12",
+            },
+          }}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
-          p="30px"
+          p="24px"
+          borderRadius="8px"
         >
           <Typography variant="h5" fontWeight="600">
             Campaign
@@ -232,22 +262,40 @@ const Dashboard = () => {
 
         <Box
           gridColumn="span 4"
+          sx={{
+            [theme.breakpoints.down("lg")]: {
+              gridColumn: "span 6",
+            },
+            [theme.breakpoints.down("md")]: {
+              gridColumn: "span 12",
+            },
+          }}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          borderRadius="8px"
         >
-          <Typography variant="h5" fontWeight="600" p="30px 30px 0 30px">
+          <Typography variant="h5" fontWeight="600" p="24px 24px 0 24px">
             Sales Quantity
           </Typography>
-          <Box height="250px" mt="-25px">
+          <Box height="90%" width="100%" mt="-25px">
             <BarChart isDashboard={true} />
           </Box>
         </Box>
 
         <Box
           gridColumn="span 4"
+          sx={{
+            [theme.breakpoints.down("lg")]: {
+              gridColumn: "span 6",
+            },
+            [theme.breakpoints.down("md")]: {
+              gridColumn: "span 12",
+            },
+          }}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
-          p="30px"
+          p="24px"
+          borderRadius="8px"
         >
           <Typography variant="h5" fontWeight="600" mb="15px">
             Geography Based Traffic

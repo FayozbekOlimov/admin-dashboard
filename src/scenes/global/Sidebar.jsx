@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  Menu,
-  MenuItem,
-  Sidebar as SideBar,
-} from "react-pro-sidebar";
+import { Menu, MenuItem, Sidebar as SideBar } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
@@ -19,6 +15,8 @@ import PieChartOutlinedIcon from "@mui/icons-material/PieChartOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -111,7 +109,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           icon={
             !collapsed ? (
               <IconButton onClick={() => setCollapsed(true)}>
-                <MenuOutlinedIcon />
+                <ChevronRight />
               </IconButton>
             ) : undefined
           }
@@ -131,7 +129,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                 ADMIN
               </Typography>
               <IconButton onClick={() => setCollapsed(false)}>
-                <MenuOutlinedIcon />
+                <ChevronLeft />
               </IconButton>
             </Box>
           )}
