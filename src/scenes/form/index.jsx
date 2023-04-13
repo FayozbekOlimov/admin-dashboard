@@ -69,11 +69,10 @@ const Form = () => {
                 onChange={handleChange}
                 value={values.firstName}
                 name="firstName"
-                error={touched.firstName}
+                error={touched.firstName && Boolean(errors.firstName)}
                 helperText={touched.firstName && errors.firstName}
                 sx={{ gridColumn: "span 2" }}
               />
-              {/* {console.log(touched.firstName, errors.firstName)} */}
               <TextField
                 fullWidth
                 variant="filled"
@@ -83,7 +82,7 @@ const Form = () => {
                 onChange={handleChange}
                 value={values.lastName}
                 name="lastName"
-                error={touched.lastName}
+                error={touched.lastName && Boolean(errors.lastName)}
                 helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
               />
@@ -96,7 +95,7 @@ const Form = () => {
                 onChange={handleChange}
                 value={values.email}
                 name="email"
-                error={touched.email}
+                error={touched.email && Boolean(errors.email)}
                 helperText={touched.email && errors.email}
                 sx={{ gridColumn: "span 4" }}
               />
@@ -109,7 +108,7 @@ const Form = () => {
                 onChange={handleChange}
                 value={values.contact}
                 name="contact"
-                error={touched.contact}
+                error={touched.contact && Boolean(errors.contact)}
                 helperText={touched.contact && errors.contact}
                 sx={{ gridColumn: "span 4" }}
               />
@@ -122,7 +121,7 @@ const Form = () => {
                 onChange={handleChange}
                 value={values.address1}
                 name="address1"
-                error={touched.address1}
+                error={touched.address1 && Boolean(errors.address1)}
                 helperText={touched.address1 && errors.address1}
                 sx={{ gridColumn: "span 4" }}
               />
@@ -135,7 +134,7 @@ const Form = () => {
                 onChange={handleChange}
                 value={values.address2}
                 name="address2"
-                error={touched.address2}
+                error={touched.address2 && Boolean(errors.address2)}
                 helperText={touched.address2 && errors.address2}
                 sx={{ gridColumn: "span 4" }}
               />

@@ -37,7 +37,7 @@ const Team = () => {
     {
       field: "email",
       headerName: "Email",
-      flex: 1,
+      flex: 1.2,
     },
     {
       field: "access",
@@ -47,7 +47,7 @@ const Team = () => {
         return (
           <Box
             width="60%"
-            m="0 auto"
+            // m="0 auto"
             p="5px"
             display="flex"
             justifyContent="center"
@@ -83,6 +83,7 @@ const Team = () => {
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
+            fontSize: "14px",
           },
           "& .name-column--cell": {
             color: colors.greenAccent[300],
@@ -90,6 +91,7 @@ const Team = () => {
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.greenAccent[700],
             borderBottom: "none",
+            fontSize: "16px",
           },
           "& .MuiDataGrid-virtualScroller": {
             backgroundColor: colors.primary[400],

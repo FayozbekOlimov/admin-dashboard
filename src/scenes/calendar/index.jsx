@@ -50,7 +50,16 @@ const Calendar = () => {
   return (
     <Box m="0 20px 20px">
       <Header title="Calendar" subtitle="Full Calendar Interactive Page" />
-      <Box display="flex" justifyContent="space-between">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        gap="15px"
+        sx={{
+          [theme.breakpoints.down("md")]: {
+            flexDirection: "column",
+          },
+        }}
+      >
         {/* CALENDAR SIDEBAR */}
         <Box
           flex="1 1 20%"
@@ -58,38 +67,57 @@ const Calendar = () => {
           p="15px"
           borderRadius="4px"
         >
-          <Typography variant="h5">Events</Typography>
-          <List>
-            {currentEvents.map((event) => (
-              <ListItem
-                key={event.id}
-                sx={{
-                  backgroundColor: colors.greenAccent[500],
-                  margin: "10px 0",
-                  borderRadius: "2px",
-                }}
-              >
-                <ListItemText
-                  primary={event.title}
-                  secondary={
-                    <Typography>
-                      {formatDate(event.start, {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            ))}
-          </List>
+          {currentEvents.length === 0 ? (
+            <Typography variant="h5">No events</Typography>
+          ) : (
+            <>
+              <Typography variant="h5">Events</Typography>
+              <List>
+                {currentEvents.map((event) => (
+                  <ListItem
+                    key={event.id}
+                    sx={{
+                      backgroundColor: colors.greenAccent[500],
+                      margin: "10px 0",
+                      borderRadius: "2px",
+                    }}
+                  >
+                    <ListItemText
+                      primary={event.title}
+                      secondary={
+                        <Typography>
+                          {formatDate(event.start, {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </Typography>
+                      }
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </>
+          )}
         </Box>
         {/* CALENDAR */}
-        <Box flex="1 1 100%" ml="15px">
+        <Box
+          flex="1 1 100%"
+          sx={{
+            "& .fc-header-toolbar": {
+              flexWrap: "wrap",
+              gap: "8px",
+            },
+          }}
+        >
           <FullCalendar
-            height="100vh"
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+            height="500px"
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+            ]}
             headerToolbar={{
               left: "prev,next today",
               center: "title",

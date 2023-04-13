@@ -6,7 +6,7 @@ const Line = () => {
   return (
     <Box m="0 20px 20px">
       <Header title="Line Chart" subtitle="Simple Line Chart" />
-      <Box height="75vh">
+      <Box height="450px" mt="-30px">
         <LineChart />
       </Box>
     </Box>

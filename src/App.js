@@ -22,12 +22,12 @@ function App() {
   const colors = tokens(theme.palette.mode);
 
   const [collapsed, setCollapsed] = useState(
-    window.matchMedia("(min-width: 900px)").matches
+    window.matchMedia("(min-width: 992px)").matches
   );
 
   useEffect(() => {
     window
-      .matchMedia("(min-width: 900px)")
+      .matchMedia("(min-width: 992px)")
       .addEventListener("change", (e) => setCollapsed(e.matches));
   }, []);
 

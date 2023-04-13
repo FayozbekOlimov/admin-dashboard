@@ -30,6 +30,7 @@ const Contacts = () => {
       type: "number",
       headerAlign: "left",
       align: "left",
+      flex: 0.8
     },
     {
       field: "phone",
@@ -39,12 +40,12 @@ const Contacts = () => {
     {
       field: "email",
       headerName: "Email",
-      flex: 1,
+      flex: 1.5,
     },
     {
       field: "address",
       headerName: "Address",
-      flex: 1,
+      flex: 1.5,
     },
     {
       field: "city",
@@ -54,7 +55,7 @@ const Contacts = () => {
     {
       field: "zipCode",
       headerName: "ZipCode",
-      flex: 1,
+      flex: 0.8,
     },
   ];
 
@@ -74,6 +75,7 @@ const Contacts = () => {
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
+            fontSize: "14px",
           },
           "& .name-column--cell": {
             color: colors.greenAccent[300],
@@ -81,6 +83,7 @@ const Contacts = () => {
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.greenAccent[700],
             borderBottom: "none",
+            fontSize: "16px",
           },
           "& .MuiDataGrid-virtualScroller": {
             backgroundColor: colors.primary[400],
